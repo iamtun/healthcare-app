@@ -3,7 +3,14 @@ import { StyleSheet, TextInput, View } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import FAIcon from "react-native-vector-icons/FontAwesome";
 
-function TextInputPrimary({ placeholder, isPass, isPhone }, ref) {
+function TextInputPrimary({
+    value,
+    onChangeText,
+    placeholder,
+    isPass,
+    isPhone,
+    isName,
+}) {
     const [isPassState, setIsPassState] = useState(isPass);
     const [nameIcon, setNameIcon] = useState("eye-off-outline");
 
@@ -14,21 +21,18 @@ function TextInputPrimary({ placeholder, isPass, isPhone }, ref) {
             : setNameIcon("eye-outline");
     };
 
-    const handleChangeInput = (val) => {
-        console.log(val);
-        ref = val;
-    };
-
     return (
         <View style={styles.container}>
             {isPhone && <FAIcon name="phone" size={24} color="gray" />}
             {isPass && <FAIcon name="lock" size={24} color="gray" />}
+            {isName && <FAIcon name="user" size={24} color="gray" />}
             <TextInput
+                value={value}
+                onChangeText={onChangeText}
                 style={styles.textInput}
                 placeholder={placeholder}
                 secureTextEntry={isPassState}
                 keyboardType={isPhone ? "phone-pad" : "default"}
-                onChangeText={(val) => handleChangeInput(val)}
             />
             {isPass && (
                 <Icon
@@ -63,4 +67,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default forwardRef(TextInputPrimary);
+export default TextInputPrimary;
