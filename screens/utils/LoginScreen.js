@@ -1,15 +1,20 @@
-import { useCallback, useRef, useState } from "react";
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
-import TextInputPrimary from "../../components/InputPrimary";
-import { Button } from "@ant-design/react-native";
+import { useCallback, useState } from "react";
+import { Alert, ImageBackground, StyleSheet, Text, View } from "react-native";
+import TextInputPrimary from "../../components/Input/InputPrimary";
+import ButtonPrimary from "../../components/ButtonPrimary";
 import { BACKGROUND_IMAGE } from "../../utils/image";
+import ActionView from "../../components/ActionView";
 
 function LoginScreen({ navigation }) {
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
 
     const handleLogin = () => {
-        console.log(`login: [phone] -> ${phone} -> [pass] -> ${password}`);
+        if (!(phone.trim() && password.trim())) {
+            Alert.alert("Thông báo", "Bạn phải điền đầy đủ thông tin!");
+        } else {
+            console.log(`login: [phone] -> ${phone} -> [pass] -> ${password}`);
+        }
     };
 
     const handleClickRegister = () => {
@@ -54,19 +59,9 @@ function LoginScreen({ navigation }) {
                     value={password}
                     onChangeText={handleChangePassInput}
                 />
-                <Button
-                    type="primary"
-                    style={styles.btnLogin}
-                    onPress={handleLogin}
-                >
-                    Đăng nhập
-                </Button>
-                <View style={styles.actionView}>
-                    <Text style={styles.action} onPress={handleClickRegister}>
-                        Đăng ký ngay
-                    </Text>
-                    <Text style={styles.action}>Quên mật khẩu</Text>
-                </View>
+
+                <ButtonPrimary title="Đăng nhập" handle={handleLogin} />
+                <ActionView title="Đăng ký ngay" isLogin handle={handleClickRegister}/>
             </ImageBackground>
         </>
     );
@@ -90,20 +85,6 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: "700",
         color: "#fff",
-    },
-    btnLogin: {
-        width: "90%",
-    },
-    actionView: {
-        marginTop: 16,
-        width: "90%",
-        flexDirection: "row",
-        justifyContent: "space-between",
-    },
-    action: {
-        fontSize: 16,
-        textDecorationLine: "underline",
-        color: "#0019FE",
     },
 });
 

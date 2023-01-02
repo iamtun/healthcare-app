@@ -1,8 +1,9 @@
 import { useCallback, useRef, useState } from "react";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
-import TextInputPrimary from "../../components/InputPrimary";
-import { Button } from "@ant-design/react-native";
+import TextInputPrimary from "../../components/Input/InputPrimary";
+import ButtonPrimary from "../../components/ButtonPrimary";
 import { BACKGROUND_IMAGE } from "../../utils/image";
+import ActionView from "../../components/ActionView";
 
 function RegisterScreen({ navigation }) {
     const [phone, setPhone] = useState("");
@@ -10,8 +11,9 @@ function RegisterScreen({ navigation }) {
     const [password, setPassword] = useState("");
     const [confirmPass, setConfirmPass] = useState("");
 
-    const handleLogin = () => {
+    const handleRegister = () => {
         console.log(phone, name, password, confirmPass);
+        navigation.navigate("SendInformationScreen", { name });
     };
 
     const handleChangePhoneInput = useCallback(
@@ -84,18 +86,8 @@ function RegisterScreen({ navigation }) {
                     onChangeText={handleChangeConfirmPassInput}
                 />
 
-                <Button
-                    type="primary"
-                    style={styles.btnLogin}
-                    onPress={handleLogin}
-                >
-                    Đăng nhập
-                </Button>
-                <View style={styles.actionView}>
-                    <Text style={styles.action} onPress={handleBackLogin}>
-                        Quay lại
-                    </Text>
-                </View>
+                <ButtonPrimary title="Đăng ký" handle={handleRegister} />
+                <ActionView title="Quay lại" handle={handleBackLogin} />
             </ImageBackground>
         </>
     );
@@ -119,20 +111,6 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: "700",
         color: "#fff",
-    },
-    btnLogin: {
-        width: "90%",
-    },
-    actionView: {
-        marginTop: 16,
-        width: "90%",
-        flexDirection: "row",
-        justifyContent: "space-between",
-    },
-    action: {
-        fontSize: 16,
-        textDecorationLine: "underline",
-        color: "#0019FE",
     },
 });
 

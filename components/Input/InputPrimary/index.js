@@ -10,6 +10,8 @@ function TextInputPrimary({
     isPass,
     isPhone,
     isName,
+    editable,
+    selectTextOnFocus,
 }) {
     const [isPassState, setIsPassState] = useState(isPass);
     const [nameIcon, setNameIcon] = useState("eye-off-outline");
@@ -33,6 +35,8 @@ function TextInputPrimary({
                 placeholder={placeholder}
                 secureTextEntry={isPassState}
                 keyboardType={isPhone ? "phone-pad" : "default"}
+                editable={editable}
+                selectTextOnFocus={selectTextOnFocus}
             />
             {isPass && (
                 <Icon
