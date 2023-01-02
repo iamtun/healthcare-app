@@ -12,6 +12,7 @@ import { BACKGROUND_IMAGE } from "../../utils/image";
 function SendInformationScreen({ navigation, route }) {
     const { name } = route.params;
     const [gender, setGender] = useState("Nam");
+    const [date, setDate] = useState(new Date());
 
     return (
         <>
@@ -33,7 +34,24 @@ function SendInformationScreen({ navigation, route }) {
 
                 <DropDownPicker gender={gender} setGender={setGender} />
 
-                <DateTimePicker />
+                <DateTimePicker date={date} setDate={setDate} />
+
+                <TextInputPrimary
+                    isAddress={true}
+                    placeholder="Địa chỉ"
+                    value={name}
+                    editable={false}
+                    selectTextOnFocus={false}
+                />
+
+                <TextInputPrimary
+                    isInsurance={true}
+                    placeholder="Số bảo hiểm"
+                    value={name}
+                    editable={false}
+                    selectTextOnFocus={false}
+                />
+
                 <ButtonPrimary title="Cập nhật thông tin" />
 
                 <ActionView title="Quay lại" />

@@ -2,6 +2,8 @@ import { forwardRef, useState } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import FAIcon from "react-native-vector-icons/FontAwesome";
+import FIcon from "react-native-vector-icons/Ionicons";
+import FMIcon from "react-native-vector-icons/MaterialCommunityIcons";
 
 function TextInputPrimary({
     value,
@@ -10,6 +12,8 @@ function TextInputPrimary({
     isPass,
     isPhone,
     isName,
+    isAddress,
+    isInsurance,
     editable,
     selectTextOnFocus,
 }) {
@@ -28,6 +32,8 @@ function TextInputPrimary({
             {isPhone && <FAIcon name="phone" size={24} color="gray" />}
             {isPass && <FAIcon name="lock" size={24} color="gray" />}
             {isName && <FAIcon name="user" size={24} color="gray" />}
+            {isAddress && <FIcon name="location-sharp" size={24} color="gray" />}
+            {isInsurance && <FMIcon name="text-box-plus-outline" size={24} color="gray" />}
             <TextInput
                 value={value}
                 onChangeText={onChangeText}
