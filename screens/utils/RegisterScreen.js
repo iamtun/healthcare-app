@@ -4,6 +4,7 @@ import TextInputPrimary from "../../components/Input/InputPrimary";
 import ButtonPrimary from "../../components/ButtonPrimary";
 import { BACKGROUND_IMAGE } from "../../utils/image";
 import ActionView from "../../components/ActionView";
+import RouterKey from "../../utils/Routerkey";
 
 function RegisterScreen({ navigation }) {
     const [phone, setPhone] = useState("");
@@ -45,7 +46,7 @@ function RegisterScreen({ navigation }) {
     );
 
     const handleBackLogin = () => {
-        navigation.navigate("LoginScreen");
+        navigation.navigate(RouterKey.LOGIN_SCREEN);
     };
 
     return (

@@ -4,6 +4,7 @@ import TextInputPrimary from "../../components/Input/InputPrimary";
 import ButtonPrimary from "../../components/ButtonPrimary";
 import { BACKGROUND_IMAGE } from "../../utils/image";
 import ActionView from "../../components/ActionView";
+import RouterKey from "../../utils/Routerkey";
 
 function LoginScreen({ navigation }) {
     const [phone, setPhone] = useState("");
@@ -13,17 +14,17 @@ function LoginScreen({ navigation }) {
         if (!(phone.trim() && password.trim())) {
             Alert.alert("Thông báo", "Bạn phải điền đầy đủ thông tin!");
         } else {
-            console.log(`login: [phone] -> ${phone} -> [pass] -> ${password}`);
+            navigation.navigate(RouterKey.MAIN_SCREEN);
         }
     };
 
     const handleClickRegister = () => {
-        navigation.navigate("RegisterScreen");
+        navigation.navigate(RouterKey.REGISTER_SCREEN);
     };
 
     const handleChangePhoneInput = useCallback(
         (val) => {
-            console.log(val);
+            // console.log(val);
             setPhone(val);
         },
         [phone]
@@ -31,7 +32,7 @@ function LoginScreen({ navigation }) {
 
     const handleChangePassInput = useCallback(
         (val) => {
-            console.log(`[pass] -> ${val}`);
+            // console.log(`[pass] -> ${val}`);
             setPassword(val);
         },
         [password]
@@ -61,7 +62,11 @@ function LoginScreen({ navigation }) {
                 />
 
                 <ButtonPrimary title="Đăng nhập" handle={handleLogin} />
-                <ActionView title="Đăng ký ngay" isLogin handle={handleClickRegister}/>
+                <ActionView
+                    title="Đăng ký ngay"
+                    isLogin
+                    handle={handleClickRegister}
+                />
             </ImageBackground>
         </>
     );
